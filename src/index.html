@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b111b" />
+    <meta name="description" content="Infinite Dev - experiencias 3D seguras e prontas para produto." />
+    <title>Infinite Dev</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Pular para o conteudo</a>
+    <canvas id="three-canvas" aria-hidden="true"></canvas>
+
+    <div id="app">
+      <header class="site-header">
+        <div class="brand" aria-label="Infinite Dev">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div class="brand-text">
+            <span class="brand-name">Infinite Dev</span>
+            <span class="brand-tag">3D + Engenharia segura</span>
+          </div>
+        </div>
+        <nav class="site-nav" aria-label="Navegacao principal">
+          <a href="#vision">Visao</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#pipeline">Pipeline</a>
+          <a href="#contact">Contato</a>
+        </nav>
+        <a class="button ghost" href="#contact">Iniciar projeto</a>
+      </header>
+
+      <main id="main">
+        <section class="hero reveal" id="vision">
+          <div class="hero-copy">
+            <p class="eyebrow">Infinite Dev</p>
+            <h1>Experiencias 3D com engenharia real, seguras e prontas para crescer.</h1>
+            <p class="lead">
+              Construimos o cenario inicial em GLB hoje e deixamos o portfolio pronto para evoluir amanha.
+              Performance, seguranca e design caminham juntos desde o primeiro commit.
+            </p>
+            <div class="cta-row">
+              <a class="button" href="#contact">Falar com engenharia</a>
+              <button class="button ghost" type="button" disabled>Portfolio em breve</button>
+            </div>
+            <div class="pill-row">
+              <span class="pill">Three.js + WebGL</span>
+              <span class="pill">Vite + Node.js</span>
+              <span class="pill">CSP + CSRF + Rate limit</span>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="panel-card">
+              <div class="panel-header">
+                <h2>Status da cena</h2>
+                <span class="status-pill" id="scene-status">Aguardando assets</span>
+              </div>
+              <div class="data-grid">
+                <div class="data-item">
+                  <p class="data-label">Stack base</p>
+                  <p class="data-value">Vite + Three.js + Node</p>
+                </div>
+                <div class="data-item">
+                  <p class="data-label">Seguranca</p>
+                  <p class="data-value">CSP, CSRF, rate limit</p>
+                </div>
+                <div class="data-item">
+                  <p class="data-label">Entrega</p>
+                  <p class="data-value">Build pronto para deploy</p>
+                </div>
+              </div>
+              <div class="toggle-row">
+                <label class="toggle">
+                  <input type="checkbox" id="reduce-motion" />
+                  <span>Reducao de movimento</span>
+                </label>
+                <p class="toggle-hint">Use quando precisar de menos animacoes.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal delay-1" id="portfolio">
+          <div class="section-header">
+            <h2>Portfolio interativo</h2>
+            <p>
+              O cenario GLB e o primeiro passo. Em seguida, entram os cases e produtos em um fluxo interativo
+              conectado ao seu negocio.
+            </p>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Ambiente 3D</h3>
+              <p>Exportado do Blender e carregado com controle de camera otimizado.</p>
+            </article>
+            <article class="card">
+              <h3>Conteudo vivo</h3>
+              <p>Portfolio dinamico pronto para dados reais, sem dependencia de CDN.</p>
+            </article>
+            <article class="card">
+              <h3>Seguranca first</h3>
+              <p>Backend com validacao, sanitizacao e protecoes OWASP desde o inicio.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section reveal delay-2" id="pipeline">
+          <div class="section-header">
+            <h2>Pipeline de entrega</h2>
+            <p>Do briefing ao deploy, mantendo performance, acessibilidade e hardening.</p>
+          </div>
+          <ol class="timeline">
+            <li>
+              <span class="timeline-title">Diagnostico</span>
+              <p>Mapeamento de objetivos e restricoes tecnicas.</p>
+            </li>
+            <li>
+              <span class="timeline-title">Cena inicial</span>
+              <p>Integracao do GLB e configuracao do lighting pipeline.</p>
+            </li>
+            <li>
+              <span class="timeline-title">Portfolio</span>
+              <p>Camadas interativas e dados conectados.</p>
+            </li>
+            <li>
+              <span class="timeline-title">Entrega segura</span>
+              <p>Deploy com observabilidade e protecoes de producao.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="section contact reveal delay-3" id="contact">
+          <div class="section-header">
+            <h2>Contato</h2>
+            <p>Fale direto com o time tecnico. Resposta rapida e fluxo seguro.</p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-info">
+              <div class="info-card">
+                <h3>Como trabalhamos</h3>
+                <ul>
+                  <li>Triagem manual e resposta em ate 2 dias uteis.</li>
+                  <li>Canal corporativo, sem spam e sem divulgacao.</li>
+                  <li>Pipeline pronto para SMTP ou log seguro.</li>
+                </ul>
+              </div>
+              <div class="info-card">
+                <h3>Stack operacional</h3>
+                <p>Node.js + Express, validacao com Zod e headers de seguranca via Helmet.</p>
+              </div>
+            </div>
+            <form class="contact-form" id="contact-form" novalidate>
+              <div class="field">
+                <label for="contact-name">Nome</label>
+                <input id="contact-name" name="name" type="text" autocomplete="name" required maxlength="80" />
+              </div>
+              <div class="field">
+                <label for="contact-email">Email</label>
+                <input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="254" />
+              </div>
+              <div class="field">
+                <label for="contact-message">Mensagem</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  maxlength="2000"
+                  placeholder="Conte sobre o seu desafio e o que voce espera do 3D."
+                ></textarea>
+              </div>
+              <div class="field hp-field">
+                <label for="contact-company">Empresa</label>
+                <input id="contact-company" name="company" type="text" autocomplete="off" tabindex="-1" />
+              </div>
+              <button class="button" type="submit">Enviar mensagem</button>
+              <p class="status" id="contact-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>Infinite Dev. Engenharia criativa e segura.</p>
+        <p>Pronto para portfolio 3D, pronto para producao.</p>
+      </footer>
+    </div>
+
+    <div class="scene-loader" id="scene-loader" role="status" aria-live="polite">
+      <div class="loader-label">Cena 3D</div>
+      <progress class="loader-bar" id="scene-progress" max="100" value="0"></progress>
+      <span class="loader-text" id="scene-loader-text">Carregando 0%</span>
+    </div>
+
+    <div class="webgl-fallback" id="webgl-fallback" role="status" aria-live="polite">
+      <p>WebGL indisponivel. O site segue funcional, mas sem visual 3D.</p>
+    </div>
+
+    <noscript>Ative o JavaScript para ver a experiencia completa.</noscript>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
