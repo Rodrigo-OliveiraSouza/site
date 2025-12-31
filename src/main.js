@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { WebGL } from 'three/examples/jsm/capabilities/WebGL.js';
+import WebGL from 'three/examples/jsm/capabilities/WebGL.js';
 import { initUI } from './ui.js';
 
 let controls = null;
