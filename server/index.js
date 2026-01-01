@@ -2,6 +2,7 @@ import 'dotenv/config';
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
 import {
@@ -17,6 +18,32 @@ import { createMailer } from './mailer.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
+const docmakerHost = (process.env.DOCMAKER_HOST || 'docmaker.infinity.dev.br').toLowerCase();
+
+let docmakerApp = null;
+let docmakerLoadError = null;
+
+const loadDocmakerApp = () => {
+  if (docmakerApp || docmakerLoadError) {
+    return docmakerApp;
+  }
+
+  try {
+    const require = createRequire(import.meta.url);
+    const docmakerModule = require(path.resolve(rootDir, 'docmaker', 'server.js'));
+    docmakerApp = docmakerModule.app || docmakerModule;
+  } catch (error) {
+    docmakerLoadError = error;
+    console.error('docmaker_load_failed', error);
+  }
+
+  return docmakerApp;
+};
+
+const isDocmakerHost = (req) => {
+  const hostname = (req.hostname || '').toLowerCase();
+  return hostname === docmakerHost;
+};
 
 const isProd = process.env.NODE_ENV === 'production' || process.argv.includes('--prod');
 const port = Number(process.env.PORT || '3000');
@@ -30,6 +57,26 @@ if (!csrfSecret) {
 const app = express();
 app.set('trust proxy', 1);
 app.disable('x-powered-by');
+
+app.use((req, res, next) => {
+  if (!isDocmakerHost(req)) {
+    return next();
+  }
+
+  const docmaker = loadDocmakerApp();
+  if (!docmaker) {
+    return res.status(503).send('Docmaker app unavailable');
+  }
+
+  return docmaker(req, res, (err) => {
+    if (err) {
+      return next(err);
+    }
+    if (!res.headersSent) {
+      res.status(404).send('Not Found');
+    }
+  });
+});
 
 const { helmetMiddleware, corsMiddleware } = buildSecurityMiddleware({
   allowedOrigin,
